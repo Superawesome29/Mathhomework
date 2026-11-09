@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>classes</title>
+    <style>
+        /* 1. Remove default browser padding and scrollbars from the main page */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 95vh;
+            overflow: hidden; /* Prevents double scrollbars */
+            background-color: rgba(1, 1, 1, 1);
+        }
+
+        /* 2. Force the iframe to lock to all four edges of the screen */
+        .fullscreen-iframe {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 95%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            z-index: 101;
+        }
+
+        /* 3. Small exit button pinned to the top-right corner */
+        .exit-button {
+            position: fixed;
+            top: 5px;
+            right: 15px;
+            z-index: 99; /* Ensures it stays on top of the iframe */
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-family: sans-serif;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .full-button {
+            position: fixed;
+            top: 5px;
+            right: 150px;
+            z-index: 101; /* Ensures it stays on top of the iframe */
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-family: sans-serif;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .exit-button:hover {
+            background-color: rgba(255, 0, 0, 0.8); /* Turns red on hover */
+        }
+        
+        .full-button:hover {
+            background-color: rgba(255, 0, 0, 0.8); /* Turns red on hover */
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+    <!-- Embedded iframe with an initial source URL -->
+    <iframe id="myIframe" src="https://example.com" class="fullscreen-iframe" loading="eager" allow="accelerated-features"></iframe>
+
+    <!-- Fixed Exit Button -->
+    <button class="full-button" onClick="fullswap();">fullscreen</button>
+    <a href="index.html" class="exit-button">✕ Exit</a>
+
+    <!-- Script section to handle page logic -->
+    <script>
+        let full2 = false;
+		let frames = false;
+		const element = document.querySelector('.fullscreen-iframe');
+		const full = document.querySelector('.full-button');
+		const exit = document.querySelector('.exit-button');
+        
+		function changeSource(page) {
+            const iframe = document.getElementById('myIframe');
+            if (isOptimized) {
+				element.style = 'width: 50%; height: 50%; transform: scale(2); transform-origin: top left; top: 0; left: 0;';
+				iframe.src = page;
+				frames = true;
+				full.style.zIndex = '100';
+				exit.style.zIndex = '102';
+			} else {
+				iframe.src = page;
+				frames = false;
+				full.style.zIndex = '102';
+				exit.style.zIndex = '100';
+				element.style = 'width: 100%; height: 95%; bottom: 0; right: 0;';
+            }
+        }
+        
+        function fullswap() {
+            if (full2) {
+                full2=false;
+				element.style.height = '95%';
+			} else {
+                full2=true;
+				element.style.height = '100%';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetPage = urlParams.get('page');
+            if (targetPage) {
+                changeSource(targetPage);
+            }
+        });
+		const urlParams = new URLSearchParams(window.location.search);
+
+// 2. Extract the 'optimize' parameter (returns "true" as a string, or null if missing)
+const optimizeParam = urlParams.get('optimize');
+
+// 3. Convert the string to a true Boolean variable (defaults to false if absent)
+const isOptimized = optimizeParam === 'true';
+
+// 4. Use the variable to toggle game features
+if (isOptimized) {
+    console.log("Optimization mode active.");
+    // Reduce particles, lower rendering resolution, or disable heavy shadows here
+} else {
+    console.log("Standard graphics mode active.");
+}
+    </script>
+</body>
+</html>

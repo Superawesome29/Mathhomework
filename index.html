@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>schoology</title>
+</head>
+      <style>
+/* The base button with your radial gradient */
+.game-btn {
+            position: relative;
+            z-index: 100;
+            opacity: 1;
+            isolation: isolate;
+            width: 100px; /* Spans the full width of its grid cell slot */
+            height: 100px;
+            
+            /* Core Background Gradient & Typography */
+            background-image: radial-gradient(#153f38, #243278, #153f38);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            
+            border: none;
+            border-radius: 8px; 
+            cursor: pointer;
+            
+            /* Centers both text and icons vertically */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Subtle Hover Animation Effect */
+        .game-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+/* When the checkbox is checked, change the background gradient of all game buttons */
+/* Find the checked input inside its label, then find the buttons that follow that label */
+label:has(#myCheckbox:checked) ~ .game-btn {
+  background-image: radial-gradient(#8c1818, #b54714, #8c1818);
+}
+
+
+        /* Set up the container for the grain texture */
+        .grain { 
+            position: relative; 
+            isolation: isolate; 
+        }
+        
+        /* The isolated grain overlay */
+        .grain::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            opacity: 0.75; /* Subtle grain intensity so your colors pop */
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='6' seed='41' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");  
+        }
+/* The SVG Grainy Texture Overlay */
+
+/* Styling for the logo inside the button */
+.button-logo {
+  width: 40px;
+  height: 40px;
+  z-index: 2; /* Keeps it above the grain */
+  position: relative;
+}
+
+/* Styling for the text inside the button */
+.button-text {
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 2; /* Keeps it above the grain */
+  position: relative;
+}
+
+
+
+</style>
+<body>
+
+    <h1>pls request any games u want also if u have name suggestions</h1>
+    <p><a href="https://docs.google.com/document/d/1UrPUTVVGJgQwDNHibTmRAg37IYgSf59uxW04oTVKgmg/edit?usp=drivesdk">google doc</a></p>
+    
+    <label>
+        <input type="checkbox" id="myCheckbox"> optimization?
+    </label>
+
+    <!-- Base URLs kept clean so JavaScript can safely append the query parameter -->
+
+    <!-- The HTML Link & Button Structure -->
+  <button class="game-btn grain" href="Classes.html?page=Games/Escaperoad.html">
+    <!-- The icon image -->
+    <img src="https://img.icons8.com/?size=100&id=Y0Gmn6ZRBPfz&format=png&color=FA5252" alt="Escape Road Logo" class="button-logo">
+    <!-- The button text -->
+    <span class="button-text">Escape Road</span>
+  </button>
+    <button class="game-btn grain" href="Classes2.html?page=Games/Bitlife.html">
+        <img src="https://img.icons8.com/glyph-neue/64/FA5252/sperm-bank.png" alt="bitlife logo" class="button-logo">
+        <span class="button-text">Bitlife</span>
+    </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Amongus.html">
+            <img src="https://img.icons8.com/fluency/48/among-us.png" alt="among us logo" class="button-logo">
+            <span class="button-text">amogus?</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/FNAF.html">
+            <img src="https://img.icons8.com/?size=100&id=nSzuCuIq7KO5&format=png&color=000000" alt="fnaf logo" class="button-logo">
+            <span class="button-text">FNAF</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Minecraft.html">
+            <img src="https://img.icons8.com/?size=100&id=XfjNd4vkhBBy&format=png&color=000000" alt="minecraft logo" class="button-logo">
+            <span class="button-text">minecraft</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/MelonPLY.html">
+            <img src="https://img.icons8.com/?size=100&id=qsamHkjVPQf3&format=png&color=000000" alt="melon logo" class="button-logo">
+            <span class="button-text">melon playground</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Solarsmash.html">
+            <img src="https://img.icons8.com/?size=100&id=7iEsUSR6ZEc9&format=png&color=000000" alt="solar logo" class="button-logo">
+            <span class="button-text">solar smash</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Ragdollarchers.html">
+            <img src="https://img.icons8.com/?size=100&id=8MKa5aETVNJj&format=png&color=000000" alt="archers logo" class="button-logo">
+            <span class="button-text">ragdoll archer</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Ragdollhit.html">
+            <img src="https://img.icons8.com/?size=100&id=22xI54IY79Mv&format=png&color=000000" alt="ragdoll hit logo" class="button-logo">
+            <span class="button-text">ragdoll hit</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Punchtrump.html">
+            <img src="https://img.icons8.com/?size=100&id=37607&format=png&color=000000" alt="fighting gamr logo" class="button-logo">
+            <span class="button-text">fighting game</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Granny.html">
+            <img src="https://img.icons8.com/?size=100&id=bcbQYSgpRPb0&format=png&color=000000" alt="granny logo" class="button-logo">
+            <span class="button-text">granny</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Slither.html">
+            <img src="https://img.icons8.com/?size=100&id=8S7SkmQtNOry&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">slither.io</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=https://classroom.mathhomework.dpdns.org/?game=www.247blackjack.com">
+            <img src="https://img.icons8.com/?size=100&id=BSgFXW9ZHHcD&format=png&color=000000" alt="Blackjack" class="button-logo">
+            <span class="button-text">blackjack</span>
+    </button>
+ 
+    <br><br><br><br><br>
+    <h3>VERSION 1.1</h3>
+    <br><br><br><br><br>
+
+    <script>
+        const blue = true;
+        const checkbox = document.getElementById('myCheckbox');
+        const gameLinks = document.querySelectorAll('.grain');
+
+        // Add a click listener to all game links
+        gameLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                // Stop the browser from navigating immediately
+                event.preventDefault(); 
+                
+                // Read the current state of the checkbox
+                const optimized = checkbox.checked; 
+                
+                // Get the base href and append the dynamic optimize value
+                const baseHref = link.getAttribute('href');
+                const finalUrl = `${baseHref}&optimize=${optimized}`;
+                
+                // Navigate to the built URL
+                window.location.href = finalUrl;
+            });
+        });
+    </script>
+</body>
+</html>
