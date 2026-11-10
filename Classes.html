@@ -78,7 +78,7 @@
 <body>
 
     <!-- Embedded iframe with an initial source URL -->
-    <iframe id="myIframe" src="https://example.com" class="fullscreen-iframe" loading="eager" allow="accelerated-features"></iframe>
+    <iframe id="myIframe" src="https://example.com" tabindex="0" class="fullscreen-iframe" loading="eager" allow="accelerated-features"></iframe>
 
     <!-- Fixed Exit Button -->
     <button class="full-button" onClick="fullswap();">fullscreen</button>
@@ -91,7 +91,11 @@
 		const element = document.querySelector('.fullscreen-iframe');
 		const full = document.querySelector('.full-button');
 		const exit = document.querySelector('.exit-button');
-        
+        const gameFrame = document.getElementById('myIframe');
+  
+  gameFrame.onload = () => {
+    gameFrame.focus();
+  };
 		function changeSource(page) {
             const iframe = document.getElementById('myIframe');
             if (isOptimized) {
