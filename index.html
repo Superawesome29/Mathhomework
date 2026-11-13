@@ -14,6 +14,14 @@
             margin: 20px;
             padding-bottom: 50px;
         }
+          .game-grid {
+            display: grid;
+            /* Auto-fit dynamically creates as many columns as will fit, minimum 150px each */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px; /* Perfect uniform spacing between all buttons */
+            max-width: 1200px; /* Keeps the buttons from stretching too wide on massive screens */
+            margin: 0 auto;
+          }
 
 /* The base button with your radial gradient */
 .game-btn {
