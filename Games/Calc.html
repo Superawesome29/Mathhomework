@@ -40,12 +40,19 @@
     <button class="button" style="left: 50%" onClick="input('*')">*</button>
     
     <button class="button" style="left: 50%" onClick="input('/')">/</button>
+    </div> <div>
+    <button class="button" style="left: 50%" onClick="input('=')">=</button>
     </div>
     <canvas class="canvas" id="canvas" height="250px" width="500px"></canvas>
     <script>
+    import { evaluate } from 'mathjs';
     var first = true;
     var inputs = blank;
         function input(inp) {
+            if (inp === '=') {
+            const expression = current;
+            result(evaluate(expression));
+            } else {
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
             if (first) {
@@ -63,6 +70,11 @@
             ctx.fillText(inputs, (canvas.width / 2), (canvas.height / 2));
             current = inputs;
         };
+        };
+        function result(math) {
+            current = "";
+            input(math);
+        }
     </script>
 </body>
 </html>
