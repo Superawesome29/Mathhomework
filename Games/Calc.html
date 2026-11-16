@@ -57,6 +57,7 @@
             if (inp === 'DEL') {
                 current = blank;
                 first = true;
+                inputs = "";
             } else {
             if (first) {
                 inputs = inp;
@@ -64,6 +65,7 @@
             } else {
                 inputs = `${current}${inp}`;
             };
+        }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "blue";
             ctx.font = "bold 16px Arial";
@@ -71,7 +73,8 @@
             ctx.textBaseline = 'middle';
             ctx.fillText(inputs, (canvas.width / 2), (canvas.height / 2));
             current = inputs;
-            }
+            
+            
         };
         function result() {
             const expression = current;
