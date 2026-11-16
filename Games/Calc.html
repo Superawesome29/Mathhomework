@@ -38,14 +38,13 @@
         function input(inp) {
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
-            let inp =ctx + inp;
+            let inputs = ctx + inp;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "blue";
             ctx.font = "bold 16px Arial";
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx
-            ctx.fillText(inp, (canvas.width / 2), (canvas.height / 2));
+            ctx.fillText(inputs, (canvas.width / 2), (canvas.height / 2));
         }
     </script>
 </body>
