@@ -19,6 +19,10 @@
             width: 50px;
             height: 50px;
         }
+        .canvas {
+            background-color: black;
+        }
+        
     </style>
     <div>
     <button class="button" onClick="input(1)">1</button> <button class="button" onClick="input(2)">2</button> <button class="button" onClick="input(3)">3</button>
@@ -29,9 +33,13 @@
     </div> <div>
     <button class="button" style="left: 50%" onClick="input(0)">0</button>
     </div>
+    <div id="output"><canvas id="canvas" height="250px" width="500px"></canvas> </div>
     <script>
         function input(inp) {
-            window.alert(inp);
+            var canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            ctx.fillText(inp);
+            ctx.restore();
         }
     </script>
 </body>
