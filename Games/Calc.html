@@ -70,7 +70,7 @@
         };
         function result() {
             const expression = current;
-            result5 = evaluate(expression);
+            result5 = new Function(`return (${expression})`)();
             current = "";
             input(result5);
         }
