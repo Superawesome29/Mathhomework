@@ -37,10 +37,12 @@
     <script>
         function input(inp) {
             var canvas = document.getElementById('canvas');
-            ctx = canvas.getContext('2d');
-            ctx.fillText(inp);
-            ctx.restore();
-            window.alert(ctx.getContext)
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = "blue";
+            ctx.font = "bold 16px Arial";
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(inp, (canvas.width / 2), (canvas.height / 2));
         }
     </script>
 </body>
