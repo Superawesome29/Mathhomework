@@ -7,16 +7,27 @@
 </head>
 <body>
     <style>
-
+        body {
+            background-color: #0A1D3D; /* Dark sleek background for a gaming site */
+            color: #ffffff;
+            font-family: sans-serif;
+            margin: 20px;
+            padding-bottom: 50px;
+        }
+        
+        .button {
+            width: 50px;
+            height: 50px;
+        }
     </style>
     <div>
-    <button onClick="input(1)">1</button> <button onClick="input(2)">2</button> <button onClick="input(3)">3</button>
+    <button class="button" onClick="input(1)">1</button> <button class="button" onClick="input(2)">2</button> <button class="button" onClick="input(3)">3</button>
     </div> <div>
-    <button onClick="input(4)">4</button> <button onClick="input(5)">5</button> <button onClick="input(6)">6</button>
+    <button class="button" onClick="input(4)">4</button> <button class="button" onClick="input(5)">5</button> <button class="button" onClick="input(6)">6</button>
     </div> <div>
-    <button onClick="input(7)">7</button> <button onClick="input(8)">8</button> <button onClick="input(9)">9</button>
+    <button class="button" onClick="input(7)">7</button> <button class="button" onClick="input(8)">8</button> <button class="button" onClick="input(9)">9</button>
     </div> <div>
-    <button style="left: 50%" onClick="input(0)">0</button>
+    <button class="button" style="left: 50%" onClick="input(0)">0</button>
     </div>
     <script>
         function input(inp) {
