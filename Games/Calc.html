@@ -42,6 +42,7 @@
     <button class="button" style="left: 50%" onClick="input('/')">/</button>
     </div> <div>
     <button class="button" style="left: 50%" onClick="result()">=</button>
+    <button class="button" style="left: 50%" onClick="input(DEL)">CLEAR</button>
     </div>
     <canvas class="canvas" id="canvas" height="250px" width="500px"></canvas>
     <script>
@@ -53,6 +54,10 @@
         function input(inp) {
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
+            if (inp === 'DEL') {
+                current = blank;
+                first = true;
+            } else {
             if (first) {
                 inputs = inp;
                 first=false;
@@ -66,7 +71,7 @@
             ctx.textBaseline = 'middle';
             ctx.fillText(inputs, (canvas.width / 2), (canvas.height / 2));
             current = inputs;
-        
+            }
         };
         function result() {
             const expression = current;
