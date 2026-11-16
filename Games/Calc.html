@@ -74,12 +74,14 @@
             let max = 20;
             let random = Math.floor(Math.random() * (max - min + 1)) + min;
             if (random => 10) {
-                result5 = result5 - 10;
+                result5 = result5 - 50;
                 result5 = result5 / 6;
                 result5 = result5 + 50;
             } else {
                 result5 = result5 / 5;
-                result5 = result5 + 10;
+                let resultf = result5 * result5;
+                result5 = resultf + 10;
+                result5 = result5 / resultf;
             };
             current = "";
             input(result5);
