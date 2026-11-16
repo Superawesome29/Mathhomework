@@ -73,6 +73,8 @@
             result5 = new Function(`return (${expression})`)();
             if (result5 === 4) {
                 state = "next";
+            } else if (result5 === 50 && state === "next") {
+                state = "next2"
             }
             if (state === "next") {
                 let min = 0;
