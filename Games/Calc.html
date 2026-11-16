@@ -49,6 +49,7 @@
     var first = true;
     var inputs = blank;
     var result5 = blank;
+    var state = begin;
         function input(inp) {
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
@@ -70,9 +71,15 @@
         function result() {
             const expression = current;
             result5 = new Function(`return (${expression})`)();
-            let min = 0;
+            if (result5 === "4") {
+                state = "next";
+            }
+            if (state === "next") {
+                let min = 0;
             let max = 20;
             let random = Math.floor(Math.random() * (max - min + 1)) + min;
+            
+            
             if (random => 10) {
                 result5 = result5 - 50;
                 result5 = result5 / 6;
@@ -85,6 +92,7 @@
             };
             current = "";
             input(result5);
+        }
         }
     </script>
 </body>
