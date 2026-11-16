@@ -35,12 +35,17 @@
     </div>
     <canvas class="canvas" id="canvas" height="250px" width="500px"></canvas>
     <script>
-    var current = "";
+    var first = true;
     var inputs = blank;
         function input(inp) {
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
-            let inputs = current + inp;
+            if (first) {
+                inputs = inp;
+                first=false;
+            } else {
+                inputs = current + inp;
+            };
             window.alert(inputs);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "blue";
@@ -48,8 +53,8 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(inputs, (canvas.width / 2), (canvas.height / 2));
-            let current = inputs;
-        }
+            current = inputs;
+        };
     </script>
 </body>
 </html>
