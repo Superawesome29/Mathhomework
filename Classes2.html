@@ -1,131 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init()</script>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <title>classes</title>
     <style>
-        /* 1. Reset base workspace */
+        /* 1. Remove default browser padding and scrollbars from the main page */
         html, body {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #000000;
-        }
-
-        /* 2. Container to safely hold and clip our scaled canvas wrapper */
-        .iframe-viewport-container {
-            position: fixed;
-            top: 40px; /* Leaves clean room for top control header links */
-            left: 0;
             width: 100vw;
-            height: calc(100vh - 40px);
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            height: 95vh;
+            overflow: hidden; /* Prevents double scrollbars */
+            background-color: rgba(1, 1, 1, 1);
         }
 
-        /* 3. Base class rules for our wrapper */
+        /* 2. Force the iframe to lock to all four edges of the screen */
         .fullscreen-iframe {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 95%;
             border: none;
             margin: 0;
             padding: 0;
-            background: #000;
+            overflow: hidden;
+            z-index: 101;
         }
 
-        /* 4. Controls layout bar across the header zone */
-        .control-header {
+        /* 3. Small exit button pinned to the top-right corner */
+        .exit-button {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 40px;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 15px;
-            padding-right: 15px;
-            box-sizing: border-box;
-            z-index: 999;
-        }
-
-        .exit-button, .full-button {
-            background-color: rgba(255, 255, 255, 0.15);
+            top: 5px;
+            right: 15px;
+            z-index: 99; /* Ensures it stays on top of the iframe */
+            background-color: rgba(0, 0, 0, 0.6);
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: none;
             border-radius: 4px;
-            padding: 6px 12px;
+            padding: 8px 12px;
             font-family: sans-serif;
-            font-size: 13px;
+            font-size: 14px;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease;
         }
         
-        .exit-button:hover { background-color: rgba(255, 0, 0, 0.7); border-color: transparent; }
-        .full-button:hover { background-color: rgba(0, 150, 255, 0.7); border-color: transparent; }
+        .full-button {
+            position: fixed;
+            top: 5px;
+            right: 150px;
+            z-index: 101; /* Ensures it stays on top of the iframe */
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-family: sans-serif;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .exit-button:hover {
+            background-color: rgba(255, 0, 0, 0.8); /* Turns red on hover */
+        }
+        
+        .full-button:hover {
+            background-color: rgba(255, 0, 0, 0.8); /* Turns red on hover */
+        }
+        
+        
     </style>
 </head>
 <body>
 
-    <!-- Upper Utility Bar -->
-    <div class="control-header">
-        <button class="full-button" onClick="fullswap();">Fullscreen</button>
-        <a href="index.html" class="exit-button">✕ Exit</a>
-    </div>
+    <!-- Embedded iframe with an initial source URL -->
+    <iframe id="myIframe" src="https://example.com" tabindex="0" class="fullscreen-iframe" loading="eager" allow="accelerated-features"></iframe>
 
-    <!-- Scaled View Container Wrap -->
-    <div class="iframe-viewport-container">
-        <iframe id="myIframe" src="https://example.com" class="fullscreen-iframe" loading="eager"></iframe>
-    </div>
+    <!-- Fixed Exit Button -->
+    <button class="full-button" onClick="fullswap();">fullscreen</button>
+    <a href="index.html" class="exit-button">✕ Exit</a>
 
+    <!-- Script section to handle page logic -->
     <script>
         let full2 = false;
-        const element = document.querySelector('.fullscreen-iframe');
-        const container = document.querySelector('.iframe-viewport-container');
-        
-        function changeSource(page) {
+		let frames = false;
+		const element = document.querySelector('.fullscreen-iframe');
+		const full = document.querySelector('.full-button');
+		const exit = document.querySelector('.exit-button');
+        const gameFrame = document.getElementById('myIframe');
+  
+  gameFrame.onload = () => {
+    gameFrame.focus();
+  };
+		function changeSource(page) {
             const iframe = document.getElementById('myIframe');
-            
-            if (page === "Games/Bitlif.html") {
-                // Clear all aggressive transform zoom matrices completely
-        element.style.transform = 'none';
-        element.style.transformOrigin = 'initial';
-        element.style.position = 'fixed';
-        element.style.top = '40px'; /* Clears room below your utility header buttons */
-        element.style.left = '0';
-        
-        // Force fluid canvas rendering parameters
-        element.style.width = '100%';
-        element.style.height = 'calc(100% - 40px)';
-        
-        iframe.src = page;
-            } else {
-                // Fallback reset loop rules for regular non-canvas layout pages
-                element.style.width = '100%';
-                element.style.height = '100%';
-                element.style.transform = 'none';
-                element.style.transformOrigin = 'initial';
-                iframe.src = page;
+            if (isOptimized) {
+				element.style = 'width: 50%; height: 50%; transform: scale(2); transform-origin: top left; top: 0; left: 0;';
+				iframe.src = page;
+				frames = true;
+				full.style.zIndex = '100';
+				exit.style.zIndex = '102';
+			} else {
+				iframe.src = page;
+				frames = false;
+				full.style.zIndex = '102';
+				exit.style.zIndex = '100';
+				element.style = 'width: 100%; height: 95%; bottom: 0; right: 0;';
             }
         }
         
         function fullswap() {
-            const header = document.querySelector('.control-header');
             if (full2) {
-                full2 = false;
-                header.style.display = 'flex';
-                container.style.top = '40px';
-                container.style.height = 'calc(100vh - 40px)';
-            } else {
-                full2 = true;
-                header.style.display = 'none';
-                container.style.top = '0';
-                container.style.height = '100vh';
+                full2=false;
+				element.style.height = '95%';
+                gameFrame.focus();
+                gameFrame.tabindex = '0';
+			} else {
+                full2=true;
+				element.style.height = '100%';
+                gameFrame.focus();
+                gameFrame.tabindex = '0';
             }
         }
 
@@ -136,10 +137,21 @@
                 changeSource(targetPage);
             }
         });
+		const urlParams = new URLSearchParams(window.location.search);
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const optimizeParam = urlParams.get('optimize');
-        const isOptimized = optimizeParam === 'true';
+// 2. Extract the 'optimize' parameter (returns "true" as a string, or null if missing)
+const optimizeParam = urlParams.get('optimize');
+
+// 3. Convert the string to a true Boolean variable (defaults to false if absent)
+const isOptimized = optimizeParam === 'true';
+
+// 4. Use the variable to toggle game features
+if (isOptimized) {
+    console.log("Optimization mode active.");
+    // Reduce particles, lower rendering resolution, or disable heavy shadows here
+} else {
+    console.log("Standard graphics mode active.");
+}
     </script>
 </body>
 </html>

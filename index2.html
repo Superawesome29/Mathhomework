@@ -4,56 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>schoology</title>
-    <style>
-        /* Global Body Adjustments */
+</head>
+      <style>
+
         body {
-            background-color: #0f111a; /* Dark sleek background for a gaming site */
+            background-color: #0A1D3D; /* Dark sleek background for a gaming site */
             color: #ffffff;
             font-family: sans-serif;
             margin: 20px;
             padding-bottom: 50px;
         }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        a {
-            color: #4da6ff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Checkbox Styling Container */
-        .opt-container {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin: 15px 0 25px 0;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        /* AUTOMATIC RESPONSIVE GRID SYSTEM */
-        .game-grid {
+          .game-grid {
             display: grid;
             /* Auto-fit dynamically creates as many columns as will fit, minimum 150px each */
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 16px; /* Perfect uniform spacing between all buttons */
             max-width: 1200px; /* Keeps the buttons from stretching too wide on massive screens */
             margin: 0 auto;
-        }
+          }
 
-        /* Base styling for all game buttons */
-        .game-btn {
+/* The base button with your radial gradient */
+.game-btn {
             position: relative;
             z-index: 100;
             opacity: 1;
             isolation: isolate;
-            width: 100%; /* Spans the full width of its grid cell slot */
+            width: 100px; /* Spans the full width of its grid cell slot */
             height: 100px;
             
             /* Core Background Gradient & Typography */
@@ -82,6 +58,12 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
+/* When the checkbox is checked, change the background gradient of all game buttons */
+/* Find the checked input inside its label, then find the buttons that follow that label */
+label:has(#myCheckbox:checked) ~ .game-grid .game-btn {
+  background-image: radial-gradient(#8c1818, #b54714, #8c1818);
+}
+
 
         /* Set up the container for the grain texture */
         .grain { 
@@ -95,69 +77,226 @@
             position: absolute;
             inset: 0;
             z-index: 100;
-            opacity: 0.5; /* Subtle grain intensity so your colors pop */
+            opacity: 0.75; /* Subtle grain intensity so your colors pop */
             mix-blend-mode: overlay;
             pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='6' seed='41' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");  
         }
+/* The SVG Grainy Texture Overlay */
 
-        /* Ensure icon layer sits above the grain */
-        .button-logo {
-            width: 40px;
-            height: 40px;
-            z-index: 2; 
-            position: relative;
-        }
+/* Styling for the logo inside the button */
+.button-logo {
+  width: 40px;
+  height: 40px;
+  z-index: 2; /* Keeps it above the grain */
+  position: relative;
+}
 
-        /* Wraps text layers cleanly */
-        .button-text {
-            z-index: 2; 
-            position: relative;
-        }
-    </style>
-</head>
+/* Styling for the text inside the button */
+.button-text {
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 2; /* Keeps it above the grain */
+  position: relative;
+}
+
+
+
+</style>
 <body>
 
     <h1>pls request any games u want also if u have name suggestions</h1>
-    <p><a href="https://google.com" target="_blank">google doc</a></p>
+    <p><a href="https://docs.google.com/document/d/1UrPUTVVGJgQwDNHibTmRAg37IYgSf59uxW04oTVKgmg/edit?usp=drivesdk">google doc</a></p>
     
-    <label class="opt-container">
-        <input type="checkbox" id="myCheckbox"> Optimization?
+    <label>
+        <input type="checkbox" id="myCheckbox"> optimization?
     </label>
 
-    <!-- CLEAN RESPONSIVE GRID LAYOUT -->
-    <div class="game-grid">
-        <button class="game-btn grain" href="Classes.html?page=Games/Escaperoad.html">
-            <img src="https://icons8.com" alt="Escape Road Logo" class="button-logo">
-            <span class="button-text">Escape Road</span>
+    <!-- Base URLs kept clean so JavaScript can safely append the query parameter -->
+<div class="game-grid">
+    <!-- The HTML Link & Button Structure -->
+  <button class="game-btn grain" href="Classes.html?page=Games/Escaperoad.html">
+    <!-- The icon image -->
+    <img src="https://img.icons8.com/?size=100&id=Y0Gmn6ZRBPfz&format=png&color=FA5252" alt="Escape Road Logo" class="button-logo">
+    <!-- The button text -->
+    <span class="button-text">Escape Road</span>
+  </button>
+    <button class="game-btn grain" href="Classes2.html?page=Games/Bitlife.html">
+        <img src="https://img.icons8.com/glyph-neue/64/FA5252/sperm-bank.png" alt="bitlife logo" class="button-logo">
+        <span class="button-text">Bitlife</span>
+    </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/FNAF.html">
+            <img src="https://img.icons8.com/?size=100&id=nSzuCuIq7KO5&format=png&color=000000" alt="fnaf logo" class="button-logo">
+            <span class="button-text">FNAF</span>
         </button>
-        
-        <button class="game-btn grain" href="Classes.html?page=Games/Bitlife.html">Bitlife</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/Amongus.html">amogus?</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/FNAF.html">FNAF</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/Minecraft.html">minecraft</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/MelonPLY.html">melon playground</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/Solarsmash.html">solar smash</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/Ragdollarchers.html">ragdoll archer</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/Ragdollhit.html">ragdoll hit</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/Punchtrump.html">fighting game</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/Granny.html">granny</button>
-        <button class="game-btn grain" href="Classes.html?page=Games/Slither.html">slither.io</button>
-    </div>
-
-    <br><br><br>
-    <h3>VERSION 1.0</h3>
+        <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/play/fnae">
+            <img src="https://img.icons8.com/?size=100&id=nSzuCuIq7KO5&format=png&color=000000" alt="fnaf logo" class="button-logo">
+            <span class="button-text">FNAE</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Amongus.html">
+            <img src="https://img.icons8.com/fluency/48/among-us.png" alt="among us logo" class="button-logo">
+            <span class="button-text">amogus?</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Minecraft.html">
+            <img src="https://img.icons8.com/?size=100&id=XfjNd4vkhBBy&format=png&color=000000" alt="minecraft logo" class="button-logo">
+            <span class="button-text">minecraft</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/play/melon">
+            <img src="https://img.icons8.com/?size=100&id=qsamHkjVPQf3&format=png&color=000000" alt="melon logo" class="button-logo">
+            <span class="button-text">melon playground</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Solarsmash.html">
+            <img src="https://img.icons8.com/?size=100&id=7iEsUSR6ZEc9&format=png&color=000000" alt="solar logo" class="button-logo">
+            <span class="button-text">solar smash</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Ragdollarchers.html">
+            <img src="https://img.icons8.com/?size=100&id=8MKa5aETVNJj&format=png&color=000000" alt="archers logo" class="button-logo">
+            <span class="button-text">ragdoll archer</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Ragdollhit.html">
+            <img src="https://img.icons8.com/?size=100&id=22xI54IY79Mv&format=png&color=000000" alt="ragdoll hit logo" class="button-logo">
+            <span class="button-text">ragdoll hit</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Punchtrump.html">
+            <img src="https://img.icons8.com/?size=100&id=37607&format=png&color=000000" alt="fighting gamr logo" class="button-logo">
+            <span class="button-text">fighting game</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Granny.html">
+            <img src="https://img.icons8.com/?size=100&id=bcbQYSgpRPb0&format=png&color=000000" alt="granny logo" class="button-logo">
+            <span class="button-text">granny</span>
+        </button>
+        <button class="game-btn grain" href="Classes.html?page=Games/Slither.html">
+            <img src="https://img.icons8.com/?size=100&id=8S7SkmQtNOry&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">slither.io</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/play/black">
+            <img src="https://img.icons8.com/?size=100&id=BSgFXW9ZHHcD&format=png&color=000000" alt="Blackjack" class="button-logo">
+            <span class="button-text">blackjack</span>
+    </button>
+    <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/play/slots">
+            <img src="https://img.icons8.com/?size=100&id=BSgFXW9ZHHcD&format=png&color=000000" alt="Blackjack" class="button-logo">
+            <span class="button-text">slots</span>
+    </button>
+    <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/play/roulette">
+            <img src="https://img.icons8.com/?size=100&id=BSgFXW9ZHHcD&format=png&color=000000" alt="Blackjack" class="button-logo">
+            <span class="button-text">roulette</span>
+    </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Moto.html">
+            <img src="https://img.icons8.com/?size=100&id=15130&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">moto3xm</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Hole.html">
+            <img src="https://img.icons8.com/?size=100&id=EDlqOuNnwBFU&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">hole.io</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Cookie.html">
+            <img src="https://img.icons8.com/?size=100&id=97693&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">cookie clicker</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Subway.html">
+            <img src="https://img.icons8.com/?size=100&id=CtEBu72jjnEF&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">subway surfers</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Slow.html">
+            <img src="https://img.icons8.com/?size=100&id=UaXTfUUK44SX&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">slow roads</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Geometry.html">
+            <img src="https://img.icons8.com/?size=100&id=2CdjeEXObOc4&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">geometry dash</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Paper.html">
+            <img src="https://img.icons8.com/?size=100&id=BqtesutdNpfI&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">paper.io</span>
+        </button>
+ <button class="game-btn grain" href="Classes.html?page=Games/Level.html">
+            <img src="https://img.icons8.com/?size=100&id=63233&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">level devil</span>
+        </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Retro3.html">
+            <img src="https://img.icons8.com/?size=100&id=7g7fPk3OqFf0&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">retro bowl</span>
+    </button>
+ <button class="game-btn grain" href="Classes.html?page=Games/Flight.html">
+            <img src="https://img.icons8.com/?size=100&id=119528&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">flight</span>
+ </button>
+ <button class="game-btn grain" href="Classes.html?page=Games/Poly.html">
+            <img src="https://img.icons8.com/?size=100&id=XLTHqx45brJy&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">polytrack</span>
+ </button>
+ <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/play/slope">
+            <img src="https://img.icons8.com/?size=100&id=22551&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">slope</span>
+ </button>
+ <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/play/krill">
+            <img src="https://img.icons8.com/?size=100&id=s0a4dzjckyfP&format=png&color=000000" alt="Blackjack" class="button-logo">
+            <span class="button-text">krillion</span>
+    </button>
+    <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/__proxy_host/krillion.io/unlimited/classic?game=1">
+            <img src="https://img.icons8.com/?size=100&id=s0a4dzjckyfP&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">Krillion(infinite mode)</span>
+ </button>
+ <button class="game-btn grain" href="Classes.html?page=https://school.mathhomework.dpdns.org/play/plague">
+            <img src="https://img.icons8.com/?size=100&id=FMVI9Ssno9Bx&format=png&color=FA5252" alt="Blackjack" class="button-logo">
+            <span class="button-text">plague inc</span>
+    </button>
+    <button class="game-btn grain" href="Classes.html?page=Games/Infinite.html">
+            <img src="https://img.icons8.com/?size=100&id=12576&format=png&color=000000" alt="slither io logo" class="button-logo">
+            <span class="button-text">(infinite craft and more coming soon)</span>
+ </button>
+ <button class="game-btn grain" href="Classes.html?page=Games/Run.html">
+            <img src="https://img.icons8.com/?size=100&id=FMVI9Ssno9Bx&format=png&color=FA5252" alt="Blackjack" class="button-logo">
+            <span class="button-text">Run 3</span>
+    </button>
+<button class="game-btn grain" href="Classes.html?page=Games/Sandboxels.html">
+            <img src="https://img.icons8.com/?size=100&id=FMVI9Ssno9Bx&format=png&color=FA5252" alt="Blackjack" class="button-logo">
+            <span class="button-text">Sandboxels</span>
+    </button>
+<button class="game-btn grain" href="Classes.html?page=Games/Drive.html">
+            <img src="https://img.icons8.com/?size=100&id=FMVI9Ssno9Bx&format=png&color=FA5252" alt="Blackjack" class="button-logo">
+            <span class="button-text">drive mad</span>
+    </button>
+<button class="game-btn grain" href="Classes.html?page=Games/Tomb.html">
+            <img src="https://img.icons8.com/?size=100&id=FMVI9Ssno9Bx&format=png&color=FA5252" alt="Blackjack" class="button-logo">
+            <span class="button-text">tomb of the mask</span>
+    </button>
+<button class="game-btn grain" href="Classes.html?page=Games/Yoho.html">
+            <img src="https://img.icons8.com/?size=100&id=FMVI9Ssno9Bx&format=png&color=FA5252" alt="Blackjack" class="button-logo">
+            <span class="button-text">yohoho.io</span>
+    </button>
+<button class="game-btn grain" href="Classes.html?page=Games/Fears.html">
+            <img src="https://img.icons8.com/?size=100&id=FMVI9Ssno9Bx&format=png&color=FA5252" alt="Blackjack" class="button-logo">
+            <span class="button-text">Fears to fathom</span>
+    </button>
+  
+    
+</div>
+    <br><br><br><br><br>
+    <h3>VERSION 1.2</h3>
+    <br><br><br><br><br>
 
     <script>
+        const blue = true;
         const checkbox = document.getElementById('myCheckbox');
-        const gameLinks = document.querySelectorAll('.game-btn');
+        const gameLinks = document.querySelectorAll('.grain');
 
+        // Add a click listener to all game links
         gameLinks.forEach(link => {
             link.addEventListener('click', (event) => {
+                // Stop the browser from navigating immediately
                 event.preventDefault(); 
+                
+                // Read the current state of the checkbox
                 const optimized = checkbox.checked; 
+                
+                // Get the base href and append the dynamic optimize value
                 const baseHref = link.getAttribute('href');
                 const finalUrl = `${baseHref}&optimize=${optimized}`;
+                
+                // Navigate to the built URL
                 window.location.href = finalUrl;
             });
         });
