@@ -320,7 +320,7 @@ label:has(#myCheckbox:checked) ~ .game-grid .game-btn {
     <br><br><br><br><br>
     <h3>VERSION 1.4</h3>
     <br><br><br><br><br>
-
+    <script src="tunnels.js"></script>
     <script>
         const blue = true;
         const checkbox = document.getElementById('myCheckbox');
@@ -328,7 +328,7 @@ label:has(#myCheckbox:checked) ~ .game-grid .game-btn {
 
         // Add a click listener to all game links
         gameLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
+            link.addEventListener('click', async (event) => {
                 // Stop the browser from navigating immediately
                 event.preventDefault(); 
                 
@@ -336,7 +336,8 @@ label:has(#myCheckbox:checked) ~ .game-grid .game-btn {
                 const optimized = checkbox.checked; 
                 
                 // Get the base href and append the dynamic optimize value
-                const baseHref = link.getAttribute('href');
+                const baseHref = await resolveTunnelUrls(link.getAttribute('href'));
+                if (!baseHref) { alert('That server is offline right now.'); return; }
                 const finalUrl = `${baseHref}&optimize=${optimized}`;
                 
                 // Navigate to the built URL
